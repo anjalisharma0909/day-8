@@ -1,7 +1,6 @@
  /**
  * server ko create
  */
-
 const express = require("express")
 const noteModel = require("./models/note.model")
 const cors = require("cors")
@@ -73,12 +72,12 @@ app.patch('/api/notes/:id', async (req, res) => {
     })
 
 })
+  
 
-console.log(__dirname)
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('*name', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'))
-})
-
+ app.get('/*splat', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 module.exports = app
